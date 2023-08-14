@@ -4,7 +4,7 @@ export default function Home() {
         <form>
           <h1>Home</h1>
           <div>
-          <img src="images/car.jpg" width="540" height="300" alt="Car"/>
+          <img src="images/HR.jpg" width="540" height="300" alt="HR logo"/>
           </div>
         </form>
       </div>
