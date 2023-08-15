@@ -46,23 +46,34 @@ export default function LogIn() {
   return (
     <div className="App">
       <form onSubmit={handleSubmit}>
-        <h1>Log In</h1>
-        <input
-          type="text"
-          value={username}
-          placeholder="Username"
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <input
-          type="text"
-          value={password}
-          placeholder="Password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
+        <div class="mb-3">
+          <h1 class="text-info">Log In</h1>
+          <label for="InputEmail" class="form-label">Email address</label>
+          <input 
+            class="form-control" 
+            id="InputEmail" 
+            aria-describedby="emailHelp"
+            type="text"
+            value={username}
+            placeholder="JohnDoe@Lmail.com"
+            onChange={(e) => setUsername(e.target.value)}
+          />
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input
+            class="form-control" 
+            id="exampleInputPassword1"
+            type="text"
+            value={password}
+            placeholder="Password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          </div>
+          <button class="btn btn-primary" type="submit">Submit</button>
 
-        <button type="submit">Submit</button>
-
-        <div className="message">{message ? <p>{message}</p> : null}</div>
+          <div className="message">{message ? <p>{message}</p> : null}</div>
+        
       </form>
     </div>
   )

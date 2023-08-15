@@ -2,7 +2,7 @@ import React from "react"
 import { useState } from "react";
 import axios from 'axios';
 
-export default function Search() {
+export default function MCsubmissionForm() {
   const [searchmode, setSearchmode] = useState("Make");
   const [searchtype, setSearchtype] = useState("");
   const [message, setMessage] = useState("");

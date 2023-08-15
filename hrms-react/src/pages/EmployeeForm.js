@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export default function EmployeeForm() {
-  const [username, setUsername] = useState("");
+  const [position, setPosition] = useState("");
   const [password, setPassword] = useState("");
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
@@ -18,7 +18,7 @@ export default function EmployeeForm() {
         },
         method: "POST",
         body: JSON.stringify({
-          username: username,
+          position: position,
           password: password,
           firstname: firstname,
           lastname: lastname,
@@ -26,7 +26,7 @@ export default function EmployeeForm() {
         }),
       });
       if (res.status === 200) {
-        setUsername("");
+        setPosition("");
         setPassword("");
         setFirstname("");
         setLastname("");
@@ -43,39 +43,69 @@ export default function EmployeeForm() {
   return (
     <div className="App">
       <form onSubmit={handleSubmit}>
-        <h1>Sign Up</h1>
-        <input
-          type="text"
-          value={username}
-          placeholder="Username"
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <input
-          type="text"
-          value={password}
-          placeholder="Password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <input
-          type="text"
-          value={firstname}
-          placeholder="First Name"
-          onChange={(e) => setFirstname(e.target.value)}
-        />
-        <input
-          type="text"
-          value={lastname}
-          placeholder="Last Name"
-          onChange={(e) => setLastname(e.target.value)}
-        />
-        <input
-          type="text"
-          value={email}
-          placeholder="Email"
-          onChange={(e) => setEmail(e.target.value)}
-        />
+        <h1 class="text-info">Register Employee</h1>
+        <div class="mb-3">
+          <label for="InputPosition" class="form-label">Position</label>
+          <input 
+            class="form-control" 
+            id="InputPosition" 
+            aria-describedby="PositionHelp"
+            type="text"
+            value={position}
+            placeholder="Position"
+            onChange={(e) => setPosition(e.target.value)}
+          />
+        </div>
+        <div class="mb-3">
+          <label for="InputPassword" class="form-label">Password</label>
+          <input 
+            class="form-control" 
+            id="InputPassword" 
+            aria-describedby="PasswordHelp"
+            type="text"
+            value={password}
+            placeholder="Password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+        <div class="mb-3">
+          <label for="InputFirstname" class="form-label">First Name</label>
+          <input 
+            class="form-control" 
+            id="InputFirstname" 
+            aria-describedby="FirstnameHelp"
+            type="text"
+            value={firstname}
+            placeholder="First Name"
+            onChange={(e) => setFirstname(e.target.value)}
+          />
+        </div>
+        <div class="mb-3">
+          <label for="InputLastname" class="form-label">Last Name</label>
+          <input 
+            class="form-control" 
+            id="InputLastname" 
+            aria-describedby="LastnameHelp"
+            type="text"
+            value={lastname}
+            placeholder="Last Name"
+            onChange={(e) => setLastname(e.target.value)}
+          />
+        </div>
+        <div class="mb-3">
+          <label for="InputEmail" class="form-label">Email</label>
+          <input 
+            class="form-control" 
+            id="InputEmail" 
+            aria-describedby="EmailHelp"
+            type="text"
+            value={email}
+            placeholder="Email"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
 
-        <button type="submit">Create</button>
+        <button class="btn btn-primary" type="submit">Create</button>
 
         <div className="message">{message ? <p>{message}</p> : null}</div>
       </form>

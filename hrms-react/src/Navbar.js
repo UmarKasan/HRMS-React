@@ -1,22 +1,35 @@
 import { Link, useMatch, useResolvedPath } from "react-router-dom"
 import 'bootstrap/dist/css/bootstrap.min.css';
-import logo from './images/HR.JPG';
+import logo from './images/HR.png';
 
 export default function Navbar() {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <Link to="/home" className="site-title">
-        <img src={logo} width="30" height="30" class="d-inline-block align-top" alt="logo"/>
-        <a class="navbar-brand">HR MS</a>
-      </Link>
-      <div class="collapse navbar-collapse">
-        <ul className="navbar-nav">
-          <CustomLink className="nav-item nav-link active" to="/about">About</CustomLink>
-          <CustomLink className="nav-link nav-link active" to="/dashboard">Dashboard</CustomLink>
-          <CustomLink className="nav-link nav-link active" to="/search">Search</CustomLink>
-          <CustomLink className="nav-link nav-link active" to="/employeeform">Sign Up</CustomLink>        
-          <CustomLink className="nav-link nav-link active" to="/login">Log In</CustomLink>
-      </ul>
+    <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+      <div class="container-fluid">
+        {/* Add Home page button as a Logo image */}
+        <Link to="/home" class="navbar-brand">
+          <img src={logo} width="30" height="30" class="d-inline-block align-top" alt="logo"/>
+          <a class="navbar-brand">HR MS</a>
+        </Link>
+        {/* Add Dropdown linnk button for dynamic screens */}
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse flex-row-reverse" id="navbarNav">
+          <ul className="navbar-nav">
+            <li class="nav-item">
+              <CustomLink className="nav-link nav-link active" to="/dashboard">Dashboard</CustomLink>
+            </li>
+            <li class="nav-item"></li>
+              <CustomLink className="nav-link nav-link active" to="/MCsubmission">MC Submission</CustomLink>
+            <li class="nav-item">
+              <CustomLink className="nav-link nav-link active" to="/employeeform">Employee Form</CustomLink>
+            </li>  
+            <li class="nav-item">      
+              <CustomLink className="nav-link nav-link active" to="/login">Log In</CustomLink>
+            </li>  
+          </ul>
+        </div>
       </div>
     </nav>
   )

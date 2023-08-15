@@ -1,4 +1,4 @@
-import logo from '../images/HR.JPG';
+import logo from '../images/HR.png';
 
 export default function Claim() {
     return (
