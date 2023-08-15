@@ -1,7 +1,7 @@
-export default function Policy() {
+export default function Dashboard() {
     return (
       <div style={{ margin: 40 }}>
-        <h1>Privacy Policy</h1>
+        <h1>Dashboard</h1>
         <br></br>
         <h3>Privacy Policy</h3>
         <p style={{ margin: 20 }}>
