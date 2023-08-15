@@ -29,7 +29,8 @@ function App() {
         </Routes>
 
       </div>
-      
+      {/* Adds Space above  Footer */}
+      <h1>~</h1>
       <Footer />
         <Routes>
         </Routes>
