@@ -16,7 +16,7 @@ function App() {
       <Navbar />
       <div className="container">
         {/* Adds Space below  navbar */}
-      <h1>~</h1>
+      <h1 class="text-light">~</h1>
         <Routes class="position-relative">
           <Route path="/" element={<Home />} />
           <Route path="/dashboard" element={<Dashboard />} />
@@ -30,7 +30,7 @@ function App() {
 
       </div>
       {/* Adds Space above  Footer */}
-      <h1>~</h1>
+      <h1 class="text-light">~</h1>
       <Footer />
         <Routes>
         </Routes>
