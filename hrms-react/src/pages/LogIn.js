@@ -21,23 +21,30 @@ export default function LogIn() {
       console.log(password);
 
       try {
-        let res = await axios.get(url, 
-                                 {params: 
-                                  { 
-                                    email_address: email,
-                                    employee_password: password
-                                  }});
+        let res = await axios.post(url, 
+                                 {
+                                    emailAddress: email,
+                                    employeePassword: password
+                                  });
 
         console.log(res);
         console.log(res.data);
 
         if (res.status === 200) {
           navigate('/user', { state: {data: res.data} });
-        } else {
+        }else {
           setMessage("Some error occurred");
         }
       } catch (err) {
-        console.log(err);
+        if (err.response) {
+          if (err.response.status === 404) {
+            setMessage("User not found");
+          } else if (err.response.status === 401) {
+            setMessage("Invalid username or password");
+          } else {
+            setMessage("Error occurred");
+          }
+        }
       }
     }
   }
@@ -70,9 +77,12 @@ export default function LogIn() {
           />
         </div>
         <button className="btn btn-primary" type="submit">Submit</button>
-
-        <div className="message">{message ? <p>{message}</p> : null}</div>
-        
+        <p></p>
+        <div className="alert alert-primary d-flex justify-content-center">
+          <div className="alert-link" role="alert">
+            {message ? <p>{message}</p> : null}
+          </div>
+        </div>
       </form>
     </div>
   )
