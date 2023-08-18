@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import { UserDispatchContext } from "../UserContext";
 
 export default function LogIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
+  
+  const dispatch = useContext(UserDispatchContext);
 
   let handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,7 +34,14 @@ export default function LogIn() {
         console.log(res.data);
 
         if (res.status === 200) {
-          navigate('/user', { state: {data: res.data} });
+          dispatch({
+            type: 'login',
+            username: res.data.employeeName,
+            userId: res.data.employeeId,
+            userRole: res.data.employeePosition,
+            employee: res.data
+          })
+          navigate('/home');
         }else {
           setMessage("Some error occurred");
         }
@@ -78,11 +88,14 @@ export default function LogIn() {
         </div>
         <button className="btn btn-primary" type="submit">Submit</button>
         <p></p>
-        <div className="alert alert-primary d-flex justify-content-center">
-          <div className="alert-link" role="alert">
-            {message ? <p>{message}</p> : null}
-          </div>
-        </div>
+        {message && (
+          <div className="alert alert-primary d-flex justify-content-center">
+            <div className="alert-link" role="alert">
+              <p>{message}</p>
+            </div>
+          </div>)
+        }
+        
       </form>
     </div>
   )
