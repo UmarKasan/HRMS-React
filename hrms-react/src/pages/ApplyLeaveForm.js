@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { UserContext } from "../UserContext";
 
 export default function ApplyLeaveForm() {
   const [leaveDate, setLeaveDate] = useState("");
   const [reason, setReason] = useState("");
   const [message, setMessage] = useState("");
+  const userInfo = useContext(UserContext);
 
   let handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,6 +19,8 @@ export default function ApplyLeaveForm() {
         body: JSON.stringify({
           leaveDate: leaveDate,
           reason: reason,
+          leaveStatus: "PENDING",
+          employee: userInfo.employee
           
           // Other fields from the API headers can be added here
         }),

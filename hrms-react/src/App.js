@@ -1,48 +1,27 @@
+import {useContext, useReducer} from 'react'
 import Navbar from "./Navbar"
 import Footer from "./Footer"
-import Home from "./pages/Home"
-import Dashboard from "./pages/Dashboard"
-import About from "./pages/About"
-import MCsubmission from "./pages/MCsubmissionForm"
-import EmployeeForm from "./pages/EmployeeForm"
-import LogIn from "./pages/LogIn"
-import User from "./pages/User"
-import Policy from "./pages/Policy"
-import { Route, Routes } from "react-router-dom"
-import ApplyLeaveForm from "./pages/ApplyLeaveForm"
-import ApplyClaimForm from "./pages/ApplyClaimForm"
-import ApplyMcForm from "./pages/ApplyMcForm"
+import { InitialUserInfo, UserContext, UserDispatchContext, userReducer } from "./UserContext"
+import AppRoutes from './AppRoutes'
 
 function App() {
-  return (
-    <>
-      <Navbar />
-      <div className="container">
-        {/* Adds Space below  navbar */}
-      <h1 class="text-light">~</h1>
-        <Routes class="position-relative">
-          <Route path="/" element={<Home />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/MC submission" element={<MCsubmission />} />
-          <Route path="/employeeform" element={<EmployeeForm />} />
-          <Route path="/login" element={<LogIn />} />
-          <Route path="/user" element={<User />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/policy" element={<Policy />} />
-          <Route path="/apply-leave" element={<ApplyLeaveForm />} />
-          <Route path="/apply-claim" element={<ApplyClaimForm />} />
-          <Route path="/apply-mc" element={<ApplyMcForm />} />
-        </Routes>
+const [userInfo, dispatch] = useReducer(userReducer, InitialUserInfo);
 
-      </div>
-      {/* Adds Space above  Footer */}
-      <h1 class="text-light">~</h1>
-      <Footer />
-        <Routes>
-        </Routes>
-    </>
-      
+
+  return (
+    <UserContext.Provider value={userInfo}>
+      <UserDispatchContext.Provider value={dispatch}>
+        <Navbar />
+        <div className="container mt-5">
+          {/* Adds Space below  navbar */}
+          <h1 class="text-light">~</h1>
+          <AppRoutes /> 
+        </div>
+        {/* Adds Space above  Footer */}
+        <h1 class="text-light">~</h1>
+        <Footer />
+      </UserDispatchContext.Provider>
+    </UserContext.Provider>
   );
 }
 

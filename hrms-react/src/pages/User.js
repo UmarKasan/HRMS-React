@@ -45,8 +45,8 @@ export default function User() {
         <button value="post" className="Button2" type="submit" onClick={handleClick}>Post</button>
         <div className="App">
           <form>
-            <h1>Welcome, { state.data.username }</h1>
-            <div>Username: { state.data.username }</div>
+            <h1>Welcome, { state.data.employeeName }</h1>
+            <div>Username: { state.data.employeeName }</div>
             <div>First Name: { state.data.firstname }</div>
             <div>Last Name: { state.data.lastname }</div>
             <div>Email: { state.data.email }</div>
