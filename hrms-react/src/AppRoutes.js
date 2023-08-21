@@ -25,8 +25,8 @@ export default function AppRoutes(){
         <Routes class="position-relative">
           <Route path="/" element={<LogIn />} />
           <Route path="/home" element={
-            user.userRole === 'ADMIN' || 'admin' ? <Admin /> : 
-            user.userRole === 'MANAGER' || 'manager' ? <ManagerHome /> : 
+            user.userRole === 'ADMIN' || user.userRole === 'admin' ? <Admin /> : 
+            user.userRole === 'MANAGER' || user.userRole === 'manager'? <ManagerHome />: 
             <EmployeeHome />}
             />
           <Route path="/dashboard" element={<Dashboard />} />

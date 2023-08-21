@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { UserContext } from "../UserContext";
 
 export default function ApplyClaimForm() {
   const [claimDate, setClaimDate] = useState("");
   const [claimAmount, setClaimAmount] = useState("");
-  const [claimType, setClaimType] = useState("");
+  const [claimType, setClaimType] = useState("Transport");
   const [fileUpload, setFileUpload] = useState("");
   const [message, setMessage] = useState("");
-
+  
   const CLAIM_TYPES = [
     {value:"Transport", label:"Transport Claims"}, 
     {value:"Overseas", label:"Overseas Travel Claims"},
@@ -14,29 +15,34 @@ export default function ApplyClaimForm() {
     {value:"Monthly", label:"Monthly Claims"}
   ]
 
+  const userInfo = useContext(UserContext);
+
   let handleSubmit = async (e) => {
     e.preventDefault();
+    const formData = new FormData();
+    formData.append("file", fileUpload, fileUpload.name);
+    formData.append("claimDate", claimDate);
+    formData.append("claimAmount", claimAmount);
+    formData.append("claimType", claimType);
+    formData.append("claimStatus", "PENDING");
+    formData.append("employee", userInfo.userId);
+
+    // console.log(formData)
+
     try {
       let res = await fetch("http://localhost:8080/claims", {
         headers: {
-          'Accept': 'application/json, text/plain',
-          'Content-Type': 'application/json; charset=UTF-8'
+          'Accept': 'application/json'
         },
         method: "POST",
-        body: JSON.stringify({
-          claimDate: claimDate,
-          claimAmount: claimAmount,
-          claimType: claimType,
-          fileUpload: fileUpload,
-          // Other fields from the API headers can be added here
-        }),
+        body: formData,
       });
-      if (res.status === 200) {
+      if (res.status === 201) {
         setClaimDate("");
         setClaimAmount("");
         setClaimType("");
         setFileUpload("");
-        setMessage("Claim Submitted");
+        setMessage("Claim Submitted Successfully..!");
       } else {
         setMessage("Some error occurred");
       }
@@ -44,6 +50,11 @@ export default function ApplyClaimForm() {
       console.log(err);
     }
   };
+  
+  const typeOnChangeHandler = (e) => {
+    setClaimType(e.target.value)
+  }
+
   return (
     <div className="App">
       <form onSubmit={handleSubmit}>
@@ -78,7 +89,7 @@ export default function ApplyClaimForm() {
             id="InputClaimType" 
             value={claimType}
             placeholder="Select"
-            onChange={(e) => setClaimType(e.target.value)}
+            onChange={typeOnChangeHandler}
             >
               {CLAIM_TYPES.map((type) => (
                 <option value={type.value}>{type.label}</option>
@@ -92,9 +103,8 @@ export default function ApplyClaimForm() {
             id="InputFileUpload" 
             aria-describedby="fileUpload"
             type="file"
-            value={fileUpload}
             placeholder="Select File"
-            onChange={(e) => setFileUpload(e.target.value)}
+            onChange={(e) => setFileUpload(e.target.files[0])}
           />
         </div>
         <button className="btn btn-primary" type="submit">Submit Claim</button>
