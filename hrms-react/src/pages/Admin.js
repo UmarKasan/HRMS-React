@@ -1,4 +1,4 @@
-eg for admin page in react: 'import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 
@@ -25,11 +25,6 @@ const Admin = () => {
         fetchEmployees();
     }, []);
 
-    // format employee id with leading zeros
-    const formatEmployeeId = (employeeId) => {
-        return employeeId.toString().padStart(5, '0');
-    }
-
     // delete employee
     const deleteEmployee = async (employeeId) => {
         // alert confirmation
@@ -47,22 +42,16 @@ const Admin = () => {
         }
     }
 
-    // on logout
-    const handleLogout = () => {
-        // redirect to login page
-        navigate('/login');
-    }
-
     // on add employee
     const handleAdd = () => {
         // redirect to add page
-        navigate('/add');
+        navigate('/employeeform');
     }
 
     // on edit employee
     const handleEdit = (employeeId) => {
         // redirect to edit page
-        navigate(`/edit/${employeeId}`);
+        navigate(`/update-employee/${employeeId}`);
     }
 
     return (
@@ -71,7 +60,6 @@ const Admin = () => {
                 <h1 className="text-center text-secondary font-weight-bold fs-1 mb-3">Employee List</h1>
                 <div className="d-flex">
                     <button className="btn btn-outline-success mb-3 mx-3" type="submit" onClick={handleAdd}>ADD EMPLOYEE</button>
-                    <button className="btn btn-outline-primary mb-3 mx-3" type="submit" onClick={handleLogout}>LOGOUT</button>
                 </div>
             </div>
             <table className="table table-striped table-bordered table-hover">
@@ -81,9 +69,7 @@ const Admin = () => {
                         <th>Name</th>
                         <th>Email</th>
                         <th>Date Of Birth</th>
-                        <th>Country</th>
-                        <th>Contact Number</th>
-                        <th>Created On</th>
+                        <th>Position</th>
                         <th>Delete</th>
                     </tr>
                 </thead>
@@ -91,14 +77,12 @@ const Admin = () => {
                     {employees.map((employee) => (
                         <tr key={employee.employeeId} className="table-hover">
                             <td>
-                                <Link className="pe-auto" to={`/edit/${employee.employeeId}`} onClick={handleEdit}>{formatEmployeeId(employee.employeeId)}</Link>
+                                <Link className="pe-auto" to={`/update-employee/${employee.employeeId}`} onClick={handleEdit}>{employee.employeeId}</Link>
                             </td>
                             <td>{employee.employeeName}</td>
-                            <td>{employee.employeeEmail}</td>
+                            <td>{employee.emailAddress}</td>
                             <td>{employee.dateOfBirth}</td>
-                            <td>{employee.country}</td>
-                            <td>{employee.contactNumber}</td>
-                            <td>{employee.createdOn}</td>
+                            <td>{employee.employeePosition}</td>
                             <td><button
                                 className="btn btn-outline-danger"
                                 onClick={() => deleteEmployee(employee.employeeId)}
@@ -111,4 +95,4 @@ const Admin = () => {
     );
 }
 
-export default Admin;'
+export default Admin;

@@ -1,3 +1,5 @@
+import React from 'react';
+
 export default function Footer() {
 	return (
 		<nav className="navbar fixed-bottom navbar-expand-lg navbar-light bg-light">

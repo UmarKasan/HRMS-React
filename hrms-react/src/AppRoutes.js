@@ -3,6 +3,8 @@ import { Route, Routes } from "react-router-dom"
 import { UserContext } from './UserContext'
 import EmployeeHome from "./pages/EmployeeHome"
 import AdminHome from "./pages/AdminHome"
+import Admin from "./pages/Admin"
+import UpdateEmployee from './pages/UpdateEmployee';
 import ManagerHome from "./pages/ManagerHome"
 import Dashboard from "./pages/Dashboard"
 import About from "./pages/About"
@@ -23,12 +25,12 @@ export default function AppRoutes(){
         <Routes class="position-relative">
           <Route path="/" element={<LogIn />} />
           <Route path="/home" element={
-            user.userRole === 'ADMIN' || user.userRole === 'admin' ? <AdminHome /> : 
+            user.userRole === 'ADMIN' || user.userRole === 'admin' ? <Admin /> : 
             user.userRole === 'MANAGER' || user.userRole === 'manager'? <ManagerHome />: 
             <EmployeeHome />}
             />
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/MC submission" element={<MCsubmission />} />
+          <Route path="/mc-submission" element={<MCsubmission />} />
           <Route path="/employeeform" element={<EmployeeForm />} />
           <Route path="/user" element={<User />} />
           <Route path="/about" element={<About />} />
@@ -37,6 +39,7 @@ export default function AppRoutes(){
           <Route path="/apply-claim" element={<ApplyClaimForm />} />
           <Route path="/apply-mc" element={<ApplyMcForm />} />
           <Route path="/login" element={<LogIn />} />
+          <Route path="update-employee/:employeeId" element={<UpdateEmployee />} />
         </Routes>
     )
 }
