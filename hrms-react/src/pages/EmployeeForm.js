@@ -1,4 +1,5 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function EmployeeForm() {
   const [employeeName, setEmployeeName] = useState("");
@@ -9,9 +10,11 @@ export default function EmployeeForm() {
   const [address, setAddress] = useState("");
   const [qualifications, setQualifications] = useState("");
   const [skills, setSkills] = useState("");
+  const [employeePosition, setEmployeePosition] = useState("");
   const [reportsTo, setReportsTo] = useState("");
   const [emergencyContact, setEmergencyContact] = useState("");
   const [message, setMessage] = useState("");
+  const navigate = useNavigate();
 
   let handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,6 +34,7 @@ export default function EmployeeForm() {
           address: address,
           qualifications: qualifications,
           skills: skills,
+          employeePosition: employeePosition,
           reportsTo: reportsTo,
           emergencyContact: emergencyContact,
           // Other fields from the API headers can be added here
@@ -47,6 +51,7 @@ export default function EmployeeForm() {
         setQualifications("");
         setReportsTo("");
         setSkills("");
+        setEmployeePosition("");
         setEmergencyContact("");
         setMessage("User created successfully");
       } else {
@@ -56,6 +61,12 @@ export default function EmployeeForm() {
       console.log(err);
     }
   };
+
+  // handle back button
+  const handleBack = () => {
+    // redirect to home page
+    navigate('/home');
+  }
 
   return (
     <div className="App">
@@ -81,7 +92,7 @@ export default function EmployeeForm() {
             aria-describedby="emailAddress"
             type="text"
             value={emailAddress}
-            placeholder="johndoe@Lmail.com"
+            placeholder="johndoe@mail.com"
             onChange={(e) => setEmailAddress(e.target.value)}
           />
         </div>
@@ -158,6 +169,18 @@ export default function EmployeeForm() {
           />
         </div>
         <div className="mb-3">
+          <label htmlFor="InputEmployeePosition" className="form-label">Position</label>
+          <input 
+            className="form-control" 
+            id="InputEmployeePosition" 
+            aria-describedby="employeePosition"
+            type="text"
+            value={employeePosition}
+            placeholder="boss"
+            onChange={(e) => setEmployeePosition(e.target.value)}
+          />
+        </div>
+        <div className="mb-3">
           <label htmlFor="InputReportsTo" className="form-label">Reports To</label>
           <input 
             className="form-control" 
@@ -181,7 +204,10 @@ export default function EmployeeForm() {
             onChange={(e) => setEmergencyContact(e.target.value)}
           />
         </div>
-        <button className="btn btn-primary" type="submit">Create</button>
+        <div className="d-flex">
+          <button className="btn btn-primary mx-3" type="submit">Create</button>
+          <button className="btn btn-secondary" type="button" onClick={ handleBack }>Back</button>
+        </div>
 
         <div className="message">{message ? <p>{message}</p> : null}</div>
       </form>

@@ -1,4 +1,4 @@
-import {useContext, useReducer} from 'react'
+import React, {useContext, useReducer} from 'react'
 import Navbar from "./Navbar"
 import Footer from "./Footer"
 import { InitialUserInfo, UserContext, UserDispatchContext, userReducer } from "./UserContext"
