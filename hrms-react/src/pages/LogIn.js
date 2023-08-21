@@ -25,10 +25,10 @@ export default function LogIn() {
 
       try {
         let res = await axios.post(url, 
-                                 {
-                                    emailAddress: email,
-                                    employeePassword: password
-                                  });
+          {
+            emailAddress: email,
+            employeePassword: password
+          });
 
         console.log(res);
         console.log(res.data);
@@ -71,7 +71,7 @@ export default function LogIn() {
             aria-describedby="emailHelp"
             type="text"
             value={email}
-            placeholder="JohnDoe@Lmail.com"
+            placeholder="JohnDoe@mail.com"
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
