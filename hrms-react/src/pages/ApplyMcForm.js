@@ -10,27 +10,25 @@ export default function ApplyMcForm() {
 
   let handleSubmit = async (e) => {
     e.preventDefault();
+    const formData = new FormData();
+    formData.append("file", fileUpload, fileUpload.name);
+    formData.append("mcDate", mcDate);
+    formData.append("reason", reason);
+    formData.append("employee", userInfo.userId);
+
     try {
       let res = await fetch("http://localhost:8080/mc-submissions", {
         headers: {
-          'Accept': 'application/json, text/plain',
-          'Content-Type': 'application/json; charset=UTF-8'
+          'Accept': 'application/json'
         },
         method: "POST",
-        body: JSON.stringify({
-          mcDate: mcDate,
-          reason: reason,
-          fileUpload: fileUpload,
-          employee: userInfo.employee
-          
-          // Other fields from the API headers can be added here
-        }),
-      });
-      if (res.status === 200) {
+        body: formData,
+        });
+      if (res.status === 201) {
         setMcDate("");
         setReason("");
         setFileUpload("");
-        setMessage("MC Applied");
+        setMessage("MC Applied Successfully..!");
       } else {
         setMessage("Some error occurred");
       }
@@ -38,6 +36,7 @@ export default function ApplyMcForm() {
       console.log(err);
     }
   };
+
   return (
     <div className="App">
       <form onSubmit={handleSubmit}>
@@ -72,9 +71,8 @@ export default function ApplyMcForm() {
             id="InputFileUpload" 
             aria-describedby="fileUpload"
             type="file"
-            value={fileUpload}
             placeholder="Select File"
-            onChange={(e) => setFileUpload(e.target.value)}
+            onChange={(e) => setFileUpload(e.target.files[0])}
           />
         </div>
         <button className="btn btn-primary" type="submit">Apply</button>
