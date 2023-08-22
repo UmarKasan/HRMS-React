@@ -1,13 +1,13 @@
 import React from "react";
 import { roles } from "../utils/HomeConfig";
 import { useNavigate } from "react-router-dom";
-import leaveImage from '../images/calender.jpg';
+import leaveImage from '../images/calender.png';
 import medicalImage from '../images/medical.png';
 import claimImage from '../images/claim.png';
 
 const Home = () => {
     const navigate = useNavigate();
-    const selectedRole = 'employee';
+    const selectedRole = 'admin';
     // const roles = roles;
 
     const navigateToPages = (route) => {

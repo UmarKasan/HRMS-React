@@ -1,7 +1,10 @@
 export const roles = {
     "admin": [
         {
-            title: "Employee form"
+            title: "Employee form",
+            description: "Register employees",
+            route: "/employeeform",
+            image: "calender.jpg"
         }
 
     ],
