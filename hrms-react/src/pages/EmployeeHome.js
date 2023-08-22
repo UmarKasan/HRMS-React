@@ -32,7 +32,6 @@ const Home = () => {
 
     return (
         <div class="container ">
-            <h1 className="text-info">Employee Home</h1>
 
             <div class="d-flex align-items-center justify-content-around full-height">
                 {roles[selectedRole].map(m => {
