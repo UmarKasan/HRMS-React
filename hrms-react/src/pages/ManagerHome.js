@@ -8,7 +8,7 @@ const ManagerHome = () => {
     const fetchClaims = async () => {
         try {
             // make GET request to Spring Boot API
-            const response = await axios.get('http://localhost:8080/claims/status?status=PENDING');
+            const response = await axios.get('http://localhost:8080/claims/status/PENDING');
             console.log(response);
             setClaims(response.data);
         } catch (error) {
@@ -20,7 +20,7 @@ const ManagerHome = () => {
     const fetchLeaves = async () => {
         try {
             // make GET request to Spring Boot API
-            const response = await axios.get('http://localhost:8080/leave-applications/status?status=PENDING');
+            const response = await axios.get('http://localhost:8080/leave-applications/status/PENDING');
             console.log(response);
             setLeaves(response.data);
         } catch (error) {
