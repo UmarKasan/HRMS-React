@@ -20,7 +20,7 @@ const ManagerHome = () => {
     const fetchLeaves = async () => {
         try {
             // make GET request to Spring Boot API
-            const response = await axios.get('http://localhost:8080/leave-applications/');
+            const response = await axios.get('http://localhost:8080/leave-applications/status/PENDING');
             console.log(response);
             setLeaves(response.data);
         } catch (error) {
@@ -175,14 +175,14 @@ const ManagerHome = () => {
                                 <td>{claim.claimType}</td>
                                 <td>
                                 <button
-                                    className="btn btn-outline-success mr-2"
+                                    className="btn btn-outline-success mx-2"
                                     onClick={() => approveClaim(claim.claimId)}
                                     >
                                         Approve
                                     </button>
                                     <span> </span>
                                     <button
-                                    className="btn btn-outline-danger ml-1"
+                                    className="btn btn-outline-danger mx-1"
                                     onClick={() => rejectClaim(claim.claimId)}
                                     >
                                         Reject
