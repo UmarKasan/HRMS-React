@@ -20,7 +20,7 @@ const ManagerHome = () => {
     const fetchLeaves = async () => {
         try {
             // make GET request to Spring Boot API
-            const response = await axios.get('http://localhost:8080/leave-applications/status/PENDING');
+            const response = await axios.get('http://localhost:8080/leave-applications/');
             console.log(response);
             setLeaves(response.data);
         } catch (error) {
@@ -116,7 +116,11 @@ const ManagerHome = () => {
                     <tbody>
                         {leaves.length > 0 ? ( leaves.map((leave) => (
                             <tr key={leave.leaveId} className="table-hover">
-                                <td>{leave.employee.employeeName}</td>
+                                <td>{leave.employee ? (
+                                    leave.employee.employeeName
+                                ) : (
+                                    <span className="text-danger">Employee data not available.</span>
+                                )}</td>
                                 <td>{leave.leaveDate}</td>
                                 <td>{leave.reason}</td>
                                 <td>
@@ -161,7 +165,11 @@ const ManagerHome = () => {
                     <tbody>
                         {claims.length > 0 ? (claims.map((claim) => (
                             <tr key={claim.claimId} className="table-hover">
-                                <td>{claim.employee.employeeName}</td>
+                                <td>{claim.employee ? (
+                                    claim.employee.employeeName
+                                ) : (
+                                    <span className="text-danger">Employee data not available.</span>
+                                )}</td>
                                 <td>{claim.claimDate}</td>
                                 <td>{claim.claimAmount}</td>
                                 <td>{claim.claimType}</td>

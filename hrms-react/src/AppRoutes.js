@@ -2,7 +2,6 @@ import React, {useContext} from 'react';
 import { Route, Routes } from "react-router-dom"
 import { UserContext } from './UserContext'
 import EmployeeHome from "./pages/EmployeeHome"
-import AdminHome from "./pages/AdminHome"
 import Admin from "./pages/Admin"
 import UpdateEmployee from './pages/UpdateEmployee';
 import ManagerHome from "./pages/ManagerHome"
