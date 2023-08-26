@@ -1,25 +1,25 @@
 import React, {useContext} from 'react';
-import { Route, Routes } from "react-router-dom"
-import { UserContext } from './UserContext'
-import EmployeeHome from "./pages/EmployeeHome"
-import MCSubmissionDisplay from "./pages/McSubmissionDisplay"
-import Admin from "./pages/Admin"
+import { Route, Routes } from "react-router-dom";
+import { UserContext } from './UserContext';
+import EmployeeHome from "./pages/EmployeeHome";
+import MCSubmissionDisplay from "./pages/McSubmissionDisplay";
+import Admin from "./pages/Admin";
 import UpdateEmployee from './pages/UpdateEmployee';
-import ManagerHome from "./pages/ManagerHome"
-import Dashboard from "./pages/Dashboard"
-import About from "./pages/About"
-import MCsubmission from "./pages/MCsubmissionForm"
-import EmployeeForm from "./pages/EmployeeForm"
-import LogIn from "./pages/LogIn"
-import User from "./pages/User"
-import Policy from "./pages/Policy"
-import ApplyLeaveForm from "./pages/ApplyLeaveForm"
-import ApplyClaimForm from "./pages/ApplyClaimForm"
-import ApplyMcForm from "./pages/ApplyMcForm"
+import ManagerHome from "./pages/ManagerHome";
+import Dashboard from "./pages/Dashboard";
+import About from "./pages/About";
+import MCsubmission from "./pages/MCsubmissionForm";
+import EmployeeForm from "./pages/EmployeeForm";
+import LogIn from "./pages/LogIn";
+import User from "./pages/User";
+import Policy from "./pages/Policy";
+import ApplyLeaveForm from "./pages/ApplyLeaveForm";
+import ApplyClaimForm from "./pages/ApplyClaimForm";
+import ApplyMcForm from "./pages/ApplyMcForm";
 
 
 export default function AppRoutes(){
-    const user = useContext(UserContext)
+    const user = useContext(UserContext);
 
     return(
         <Routes class="position-relative">
