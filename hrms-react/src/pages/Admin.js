@@ -54,12 +54,19 @@ const Admin = () => {
         navigate(`/update-employee/${employeeId}`);
     }
 
+    // on handle view mc list
+    const handleMcList = () => {
+        // redirect to mc list page
+        navigate('/mc-submission-list');
+    }
+
     return (
         <div className="container h-100 mt-5">
             <div className="d-flex justify-content-between">
                 <h1 className="text-center text-secondary font-weight-bold fs-1 mb-3">Employee List</h1>
                 <div className="d-flex">
                     <button className="btn btn-outline-success mb-3 mx-3" type="submit" onClick={handleAdd}>ADD EMPLOYEE</button>
+                    <button className="btn btn-outline-warning mb-3 mx-3" type="submit" onClick={handleMcList}>VIEW MC LIST</button>
                 </div>
             </div>
             <table className="table table-striped table-bordered table-hover">

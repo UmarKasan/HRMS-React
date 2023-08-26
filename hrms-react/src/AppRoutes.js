@@ -2,6 +2,7 @@ import React, {useContext} from 'react';
 import { Route, Routes } from "react-router-dom"
 import { UserContext } from './UserContext'
 import EmployeeHome from "./pages/EmployeeHome"
+import MCSubmissionDisplay from './pages/MCSubmissionDisplay';
 import Admin from "./pages/Admin"
 import UpdateEmployee from './pages/UpdateEmployee';
 import ManagerHome from "./pages/ManagerHome"
@@ -30,6 +31,7 @@ export default function AppRoutes(){
             />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/mc-submission" element={<MCsubmission />} />
+          <Route path="/mc-submission-list" element={<MCSubmissionDisplay />} />
           <Route path="/employeeform" element={<EmployeeForm />} />
           <Route path="/user" element={<User />} />
           <Route path="/about" element={<About />} />
