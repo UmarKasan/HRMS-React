@@ -2,7 +2,7 @@ import React, {useContext} from 'react';
 import { Route, Routes } from "react-router-dom"
 import { UserContext } from './UserContext'
 import EmployeeHome from "./pages/EmployeeHome"
-import MCSubmissionDisplay from './pages/MCSubmissionDisplay';
+import MCSubmissionDisplay from "./pages/McSubmissionDisplay"
 import Admin from "./pages/Admin"
 import UpdateEmployee from './pages/UpdateEmployee';
 import ManagerHome from "./pages/ManagerHome"
