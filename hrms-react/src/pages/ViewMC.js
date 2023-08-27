@@ -4,8 +4,6 @@ import { useNavigate, Link } from 'react-router-dom';
 
 const ViewMc = () => {
     // declare state variables
-    const [employees, setEmployees] = useState([]);
-    const navigate = useNavigate();
     const [mcDate, setMcDate] = useState("");
     const [mcs, setMcs] = useState("");
 
@@ -30,23 +28,10 @@ const ViewMc = () => {
             console.error(error);
         }
     };
-
-    // declare useEffect hook
-    // useEffect(() => {
-    //     fetchMcs();
-
-    // }, []);
-
-    // const viewMc = () => {
-       
-    //     fetchMcs();
-    // }
-
-   
     return (
         <div className="container h-100 mt-5">
-            <div className="d-flex justify-content-between">
-                <h1 className="text-center text-secondary font-weight-bold fs-1 mb-3">Applied Medical Leaves</h1>
+            <div className="d-flex justify-content-end">
+                {/* <h1 className="text-center text-secondary font-weight-bold fs-1 mb-3">Applied Medical Leaves</h1> */}
                 <div className="d-flex">
                 <div className="mb-3">
                     <input 
