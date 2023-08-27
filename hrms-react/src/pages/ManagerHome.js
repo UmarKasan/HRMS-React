@@ -1,9 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate, Link } from 'react-router-dom';
 
 const ManagerHome = () => {
+    
     const [claims, setClaims] = useState([]);
     const [leaves, setLeaves] = useState([]);
+    const navigate = useNavigate();
+    const [mcDate, setMcDate] = useState("");
+
+    // view MCs
+    const handleAdd = () => {
+        // redirect to MC page
+        navigate('/view-mc');
+    }
 
     const fetchClaims = async () => {
         try {
@@ -100,6 +110,15 @@ const ManagerHome = () => {
 
     return (
         <div className="container h-100 mt-5">
+            
+            <div className='row mb-3'>
+                <div className="d-flex justify-content-between">
+                <Link className="pe-auto" to={`/view-mc`} onClick={handleAdd}><h1 className="text-center text-secondary font-weight-bold fs-1 mb-3">Medical Leaves</h1></Link>
+                </div>            
+                
+               
+            </div>
+            
             <div className='row'>
                 <div className="d-flex justify-content-between">
                     <h1 className="text-center text-secondary font-weight-bold fs-1 mb-3">Leave Applications</h1>
@@ -139,8 +158,6 @@ const ManagerHome = () => {
                         <tr className="table-hover">
                             <td colspan="6" className='text-center'>No New Leaves Applied</td>
                         </tr>}
-                        
-                       
                     </tbody>
                 </table>
             </div>

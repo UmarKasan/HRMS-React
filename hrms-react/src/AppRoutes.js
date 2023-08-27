@@ -2,7 +2,6 @@ import React, {useContext} from 'react';
 import { Route, Routes } from "react-router-dom"
 import { UserContext } from './UserContext'
 import EmployeeHome from "./pages/EmployeeHome"
-import AdminHome from "./pages/AdminHome"
 import Admin from "./pages/Admin"
 import UpdateEmployee from './pages/UpdateEmployee';
 import ManagerHome from "./pages/ManagerHome"
@@ -16,6 +15,7 @@ import Policy from "./pages/Policy"
 import ApplyLeaveForm from "./pages/ApplyLeaveForm"
 import ApplyClaimForm from "./pages/ApplyClaimForm"
 import ApplyMcForm from "./pages/ApplyMcForm"
+import ViewMc from "./pages/ViewMC"
 
 
 export default function AppRoutes(){
@@ -40,6 +40,7 @@ export default function AppRoutes(){
           <Route path="/apply-mc" element={<ApplyMcForm />} />
           <Route path="/login" element={<LogIn />} />
           <Route path="update-employee/:employeeId" element={<UpdateEmployee />} />
+          <Route path="/view-mc" element={<ViewMc />} />
         </Routes>
     )
 }
