@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
+import ViewMc from './ViewMC';
 
 const ManagerHome = () => {
-    
+    const [showMc, setShowMc] = useState (false);
+    const [showLeave, setShowLeave] = useState(false);
+    const [showClaim, setShowClaim] = useState(false);
     const [claims, setClaims] = useState([]);
     const [leaves, setLeaves] = useState([]);
     const navigate = useNavigate();
-    const [mcDate, setMcDate] = useState("");
 
     // view MCs
     const handleAdd = () => {
@@ -108,21 +110,46 @@ const ManagerHome = () => {
         }
     }
 
+    
+    const toggleMc = () => {
+        setShowMc(prev => !prev)
+    }
+    const toggleLeave = () => {
+        setShowLeave(prev => !prev)
+    }
+    const toggleClaim = () => {
+        setShowClaim(prev => !prev)
+    }
+
     return (
         <div className="container h-100 mt-5">
             
-            <div className='row mb-3'>
-                <div className="d-flex justify-content-between">
-                <Link className="pe-auto" to={`/view-mc`} onClick={handleAdd}><h1 className="text-center text-secondary font-weight-bold fs-1 mb-3">Medical Leaves</h1></Link>
-                </div>            
-                
-               
+            <div className='row mb-5'>
+                <div className="d-flex justify-content-start gap-5">
+                {/* <Link className="pe-auto" to={`/view-mc`} onClick={handleAdd}></Link> */}
+                <h1 className="text-center text-secondary font-weight-bold fs-1" onClick={toggleMc}>Medical Leaves</h1>
+                <button
+                    className="btn btn-outline-secondary ml-5 btn-lg"
+                    onClick={toggleMc}
+                    >
+                    {showMc ? "Hide" : "View"}
+                    </button>
+                </div>             
             </div>
-            
+
+            {showMc ? <ViewMc /> : null}
+
             <div className='row'>
-                <div className="d-flex justify-content-between">
-                    <h1 className="text-center text-secondary font-weight-bold fs-1 mb-3">Leave Applications</h1>
+                <div className="d-flex justify-content-start gap-5">
+                    <h1 className="text-center text-secondary font-weight-bold fs-1 mb-2">Leave Applications</h1>
+                    <button
+                    className="btn btn-outline-secondary ml-5 btn-lg"
+                    onClick={toggleLeave}
+                    >
+                    {showLeave ? "Hide" : "View"}
+                    </button>
                 </div>
+                {showLeave ? 
                 <table className="table table-striped table-bordered table-hover">
                     <thead>
                         <tr>
@@ -164,11 +191,20 @@ const ManagerHome = () => {
                         </tr>}
                     </tbody>
                 </table>
+                : null
+                }
             </div>
             <div className='row mt-5'>
-                <div className="d-flex justify-content-between">
-                    <h1 className="text-center text-secondary font-weight-bold fs-1 mb-3">Claim Applications</h1>
+                <div className="d-flex justify-content-start gap-5">
+                    <h1 className="text-center text-secondary font-weight-bold fs-1 mb-2">Claim Applications</h1>
+                    <button
+                    className="btn btn-outline-secondary ml-5 btn-lg"
+                    onClick={toggleClaim}
+                    >
+                    {showClaim ? "Hide" : "View"}
+                    </button>
                 </div>
+                {showClaim ?
                 <table className="table table-striped table-bordered table-hover">
                     <thead>
                         <tr>
@@ -212,6 +248,8 @@ const ManagerHome = () => {
                         </tr>}
                     </tbody>
                 </table>
+                : null
+                }
             </div>
             
         </div>
