@@ -4,11 +4,12 @@ import { UserContext } from "../UserContext";
 export default function ApplyClaimForm() {
   const [claimDate, setClaimDate] = useState("");
   const [claimAmount, setClaimAmount] = useState("");
-  const [claimType, setClaimType] = useState("Transport");
+  const [claimType, setClaimType] = useState("");
   const [fileUpload, setFileUpload] = useState("");
   const [message, setMessage] = useState("");
   
   const CLAIM_TYPES = [
+    {value:'', label:'Select...'},
     {value:"Transport", label:"Transport Claims"}, 
     {value:"Overseas", label:"Overseas Travel Claims"},
     {value:"Medical", label:"Medical Claims"},
@@ -85,14 +86,14 @@ export default function ApplyClaimForm() {
         <div className="mb-3">
           <label htmlFor="InputClaimType" className="form-label">Claim Type</label>
           <select 
-            className="form-control" 
+            className="form-select" 
             id="InputClaimType" 
             value={claimType}
             placeholder="Select"
             onChange={typeOnChangeHandler}
             >
               {CLAIM_TYPES.map((type) => (
-                <option value={type.value}>{type.label}</option>
+                <option key={type.value} value={type.value}>{type.label}</option>
               ))}
           </select>
         </div>

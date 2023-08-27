@@ -16,10 +16,10 @@ import ApplyLeaveForm from "./pages/ApplyLeaveForm"
 import ApplyClaimForm from "./pages/ApplyClaimForm"
 import ApplyMcForm from "./pages/ApplyMcForm"
 import ViewMc from "./pages/ViewMC"
-
+import MCSubmissionDisplay from "./pages/McSubmissionDisplay";
 
 export default function AppRoutes(){
-    const user = useContext(UserContext)
+    const user = useContext(UserContext);
 
     return(
         <Routes class="position-relative">
@@ -31,6 +31,7 @@ export default function AppRoutes(){
             />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/mc-submission" element={<MCsubmission />} />
+          <Route path="/mc-submission-list" element={<MCSubmissionDisplay />} />
           <Route path="/employeeform" element={<EmployeeForm />} />
           <Route path="/user" element={<User />} />
           <Route path="/about" element={<About />} />

@@ -135,7 +135,11 @@ const ManagerHome = () => {
                     <tbody>
                         {leaves.length > 0 ? ( leaves.map((leave) => (
                             <tr key={leave.leaveId} className="table-hover">
-                                <td>{leave.employee.employeeName}</td>
+                                <td>{leave.employee ? (
+                                    leave.employee.employeeName
+                                ) : (
+                                    <span className="text-danger">Employee data not available.</span>
+                                )}</td>
                                 <td>{leave.leaveDate}</td>
                                 <td>{leave.reason}</td>
                                 <td>
@@ -178,20 +182,24 @@ const ManagerHome = () => {
                     <tbody>
                         {claims.length > 0 ? (claims.map((claim) => (
                             <tr key={claim.claimId} className="table-hover">
-                                <td>{claim.employee.employeeName}</td>
+                                <td>{claim.employee ? (
+                                    claim.employee.employeeName
+                                ) : (
+                                    <span className="text-danger">Employee data not available.</span>
+                                )}</td>
                                 <td>{claim.claimDate}</td>
                                 <td>{claim.claimAmount}</td>
                                 <td>{claim.claimType}</td>
                                 <td>
                                 <button
-                                    className="btn btn-outline-success mr-2"
+                                    className="btn btn-outline-success mx-2"
                                     onClick={() => approveClaim(claim.claimId)}
                                     >
                                         Approve
                                     </button>
                                     <span> </span>
                                     <button
-                                    className="btn btn-outline-danger ml-1"
+                                    className="btn btn-outline-danger mx-1"
                                     onClick={() => rejectClaim(claim.claimId)}
                                     >
                                         Reject
