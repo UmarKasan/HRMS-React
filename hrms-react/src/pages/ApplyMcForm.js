@@ -50,7 +50,9 @@ export default function ApplyMcForm() {
             type="date"
             value={mcDate}
             placeholder=""
-            onChange={(e) => setMcDate(e.target.value)}/>
+            onChange={(e) => setMcDate(e.target.value)}
+            required
+          />
         </div>
         <div className="mb-3">
           <label htmlFor="InputReason" className="form-label">Reason</label>
@@ -62,6 +64,7 @@ export default function ApplyMcForm() {
             value={reason}
             placeholder="Reason"
             onChange={(e) => setReason(e.target.value)}
+            required
           />
         </div>
         <div className="mb-3">
@@ -73,6 +76,7 @@ export default function ApplyMcForm() {
             type="file"
             placeholder="Select File"
             onChange={(e) => setFileUpload(e.target.files[0])}
+            required
           />
         </div>
         <button className="btn btn-primary" type="submit">Apply</button>
