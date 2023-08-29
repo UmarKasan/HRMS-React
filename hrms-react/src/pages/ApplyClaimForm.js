@@ -9,7 +9,6 @@ export default function ApplyClaimForm() {
   const [message, setMessage] = useState("");
   
   const CLAIM_TYPES = [
-    {value:'', label:'Select...'},
     {value:"Transport", label:"Transport Claims"}, 
     {value:"Overseas", label:"Overseas Travel Claims"},
     {value:"Medical", label:"Medical Claims"},
@@ -69,7 +68,9 @@ export default function ApplyClaimForm() {
             type="date"
             value={claimDate}
             placeholder=""
-            onChange={(e) => setClaimDate(e.target.value)}/>
+            onChange={(e) => setClaimDate(e.target.value)}
+            required
+          />
         </div>
         <div className="mb-3">
           <label htmlFor="InputClaimAmount" className="form-label">Claim Amount</label>
@@ -81,6 +82,7 @@ export default function ApplyClaimForm() {
             value={claimAmount}
             placeholder="00.00"
             onChange={(e) => setClaimAmount(e.target.value)}
+            required
           />
         </div>
         <div className="mb-3">
@@ -91,7 +93,9 @@ export default function ApplyClaimForm() {
             value={claimType}
             placeholder="Select"
             onChange={typeOnChangeHandler}
+            required
             >
+              <option value="" selected disabled>Select</option>
               {CLAIM_TYPES.map((type) => (
                 <option key={type.value} value={type.value}>{type.label}</option>
               ))}
@@ -106,6 +110,7 @@ export default function ApplyClaimForm() {
             type="file"
             placeholder="Select File"
             onChange={(e) => setFileUpload(e.target.files[0])}
+            required
           />
         </div>
         <button className="btn btn-primary" type="submit">Submit Claim</button>

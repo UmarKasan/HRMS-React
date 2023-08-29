@@ -49,7 +49,9 @@ export default function ApplyLeaveForm() {
             type="date"
             value={leaveDate}
             placeholder=""
-            onChange={(e) => setLeaveDate(e.target.value)}/>
+            onChange={(e) => setLeaveDate(e.target.value)}
+            required
+          />
         </div>
         <div className="mb-3">
           <label htmlFor="InputReason" className="form-label">Reason</label>
@@ -61,6 +63,7 @@ export default function ApplyLeaveForm() {
             value={reason}
             placeholder="Reason"
             onChange={(e) => setReason(e.target.value)}
+            required
           />
         </div>
         <button className="btn btn-primary" type="submit">Apply</button>
@@ -70,5 +73,3 @@ export default function ApplyLeaveForm() {
     </div>
     )
 }
-
-{/* export default ApplyLeaveForm; */}

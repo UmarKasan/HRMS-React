@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from 'axios'
 
 export default function EmployeeForm() {
   const [employeeName, setEmployeeName] = useState("");
@@ -12,9 +13,39 @@ export default function EmployeeForm() {
   const [skills, setSkills] = useState("");
   const [employeePosition, setEmployeePosition] = useState("");
   const [reportsTo, setReportsTo] = useState("");
+  const [managers, setManagers] = useState([{value: '', label: ''}])
   const [emergencyContact, setEmergencyContact] = useState("");
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
+
+  const POSITION = [
+    {value:"ADMIN", label:"ADMIN"}, 
+    {value:"MANAGER", label:"MANAGER"},
+    {value:"EMPLOYEE", label:"EMPLOYEE"},
+  ]
+
+  const fetchManagers = async () => {
+    try{
+      const response = await axios.get('http://localhost:8080/employees/position/MANAGER');
+      if(response.data.length > 0){
+        const managersArray = response.data.map((manager) => {
+          return {
+            value: manager.employeeName,
+            label: manager.employeeName
+          }
+        })
+        setManagers(managersArray)
+      }
+    } catch (error){
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    fetchManagers()
+  }, [])
+
+
 
   let handleSubmit = async (e) => {
     e.preventDefault();
@@ -67,7 +98,9 @@ export default function EmployeeForm() {
     // redirect to home page
     navigate('/home');
   }
-
+  const typeOnChangeHandler = (e) => {
+    setEmployeePosition(e.target.value)
+  }
   return (
     <div className="App">
       <form onSubmit={handleSubmit}>
@@ -82,6 +115,7 @@ export default function EmployeeForm() {
             value={employeeName}
             placeholder="John Doe"
             onChange={(e) => setEmployeeName(e.target.value)}
+            required
           />
         </div>
         <div className="mb-3">
@@ -94,6 +128,7 @@ export default function EmployeeForm() {
             value={emailAddress}
             placeholder="johndoe@mail.com"
             onChange={(e) => setEmailAddress(e.target.value)}
+            required
           />
         </div>
         <div className="mb-3">
@@ -106,6 +141,7 @@ export default function EmployeeForm() {
             value={employeePassword}
             placeholder="Password"
             onChange={(e) => setEmployeePassword(e.target.value)}
+            required
           />
         </div>
         <div className="mb-3">
@@ -118,6 +154,7 @@ export default function EmployeeForm() {
             value={icNumber}
             placeholder="S91234567X"
             onChange={(e) => setIcNumber(e.target.value)}
+            required
           />
         </div>
         <div className="mb-3">
@@ -130,6 +167,7 @@ export default function EmployeeForm() {
             value={dateOfBirth}
             placeholder="2000-04-11"
             onChange={(e) => setDateOfBirth(e.target.value)}
+            required
           />
         </div>
         <div className="mb-3">
@@ -170,19 +208,23 @@ export default function EmployeeForm() {
         </div>
         <div className="mb-3">
           <label htmlFor="InputEmployeePosition" className="form-label">Position</label>
-          <input 
-            className="form-control" 
+          <select 
+            className="form-select" 
             id="InputEmployeePosition" 
-            aria-describedby="employeePosition"
-            type="text"
             value={employeePosition}
-            placeholder="boss"
-            onChange={(e) => setEmployeePosition(e.target.value)}
-          />
+            placeholder="Select"
+            onChange={typeOnChangeHandler}
+            required
+            >
+              <option value="" disabled selected>Select</option>
+              {POSITION.map((type) => (
+                <option key={type.value} value={type.value}>{type.label}</option>))
+              }
+          </select>
         </div>
         <div className="mb-3">
           <label htmlFor="InputReportsTo" className="form-label">Reports To</label>
-          <input 
+          {/* <input 
             className="form-control" 
             id="InputReportsTo" 
             aria-describedby="reportsTo"
@@ -190,7 +232,20 @@ export default function EmployeeForm() {
             value={reportsTo}
             placeholder="boss"
             onChange={(e) => setReportsTo(e.target.value)}
-          />
+          /> */}
+          <select 
+            className="form-select" 
+            id="InputReportsTo" 
+            value={reportsTo}
+            placeholder="Select Manager"
+            onChange={(e) => setReportsTo(e.target.value)}
+            required
+            >
+              <option value="" disabled selected>Select</option>
+              {managers.map((manager) => (
+                <option key={manager.value} value={manager.value}>{manager.label}</option>))
+              }
+          </select>
         </div>
         <div className="mb-3">
           <label htmlFor="InputEmergencyContact" className="form-label">Emergency Contact</label>
