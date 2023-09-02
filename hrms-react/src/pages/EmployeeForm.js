@@ -85,6 +85,9 @@ export default function EmployeeForm() {
         setEmployeePosition("");
         setEmergencyContact("");
         setMessage("User created successfully");
+
+        // send alert
+        alert("User created successfully!");
       } else {
         setMessage("Some error occurred");
       }
@@ -167,6 +170,8 @@ export default function EmployeeForm() {
             value={dateOfBirth}
             placeholder="2000-04-11"
             onChange={(e) => setDateOfBirth(e.target.value)}
+            min="1900-01-01"
+            max="2008-01-01"
             required
           />
         </div>
@@ -264,7 +269,7 @@ export default function EmployeeForm() {
           <button className="btn btn-secondary" type="button" onClick={ handleBack }>Back</button>
         </div>
 
-        <div className="message">{message ? <p>{message}</p> : null}</div>
+        <div className="message text-success">{message ? <p>{message}</p> : null}</div>
       </form>
     </div>
   )
