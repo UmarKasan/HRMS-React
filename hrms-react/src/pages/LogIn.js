@@ -66,10 +66,11 @@ export default function LogIn() {
           <h1 className="text-info">Log In</h1>
           <label htmlFor="InputEmail" className="form-label">Email address</label>
           <input 
+            required
             className="form-control" 
             id="InputEmail" 
             aria-describedby="emailHelp"
-            type="text"
+            type="email"
             value={email}
             placeholder="JohnDoe@mail.com"
             onChange={(e) => setEmail(e.target.value)}
@@ -78,6 +79,7 @@ export default function LogIn() {
         <div className="mb-3">
           <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
           <input
+            required
             className="form-control" 
             id="exampleInputPassword1"
             type="password"

@@ -78,7 +78,8 @@ export default function ApplyClaimForm() {
             className="form-control" 
             id="InputClaimAmount" 
             aria-describedby="claimAmount"
-            type="text"
+            type="number"
+            min={0}
             value={claimAmount}
             placeholder="00.00"
             onChange={(e) => setClaimAmount(e.target.value)}
