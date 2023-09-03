@@ -178,7 +178,7 @@ export default function EmployeeForm() {
     }
 
     if (field === "emergencyContact") {
-      const regex = /^[0-9()\-]+$/;
+      const regex = /^([^.0-]\d+|\d)$/;
       if (!regex.test(value)) {
         setErrors({ ...errors, emergencyContact: "Not a valid phone number" });
       } else {
