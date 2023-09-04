@@ -1,32 +1,32 @@
-// import modules
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router';
+// import dependencies
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router";
+import axios from "axios";
 
 // define component
-const MCSubmissionDisplay = () => {
+const ClaimDisplay = () => {
     // declare properties
     const navigate = useNavigate();
-    const [mcSubmissions, setMcSubmissions] = useState([]);
-    const [error, setError] = useState('');
+    const [claim, setClaim] = useState([]);
+    const [error, setError] = useState("");
 
     // declare useEffect hook
     useEffect(() => {
-        const fetchMcSubmissions = async () => {
+        const fetchClaims = async () => {
             try {
-                // make GET request to Spring Boot API
-                const response = await axios.get('http://localhost:8080/mc-submissions');
+                // get request to get all claims
+                const response = await axios.get('http://localhost:8080/claims');
                 console.log(response);
-                setMcSubmissions(response.data);
+                setClaim(response.data);
             } catch (error) {
                 // error handling
                 console.error(error);
-                setError('Unable to fetch data.');
+                setError("Unable to fetch data.");
             }
         };
 
-        // invoke fetchMcSubmissions
-        fetchMcSubmissions();
+        // invoke fetchClaim
+        fetchClaims();
     }, []);
 
     // redirect back to admin home
@@ -35,30 +35,34 @@ const MCSubmissionDisplay = () => {
         navigate('/home');
     }
 
-    // return jsx
+    // jsx
     return (
         <div className="container h-100 mt-5">
-            <h1 className="text-center text-secondary font-weight-bold fs-1 mb-3">MC Submissions List</h1>
+            <h1 className="text-center text-secondary font-weight-bold fs-1 mb-3">Leave List</h1>
             <table className="table table-striped table-bordered table-hover">
                 <thead>
                     <tr>
                         <th>ID</th>
                         <th>Date</th>
-                        <th>Reason</th>
+                        <th>Type</th>
+                        <th>Amount</th>
                         <th>File Path</th>
+                        <th>Status</th>
                         <th>Employee Name</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {mcSubmissions.map((mcSubmission) => {
+                    {claim.map((claim) => {
                         return (
-                            <tr key={mcSubmission.mcId}>
-                                <td>{mcSubmission.mcId}</td>
-                                <td>{mcSubmission.mcDate}</td>
-                                <td>{mcSubmission.reason}</td>
-                                <td>{mcSubmission.fileUpload}</td>
-                                <td>{mcSubmission.employee ? (
-                                    mcSubmission.employee.employeeName
+                            <tr key={claim.claimId}>
+                                <td>{claim.claimId}</td>
+                                <td>{claim.claimDate}</td>
+                                <td>{claim.claimType}</td>
+                                <td>{claim.claimAmount}</td>
+                                <td>{claim.fileUpload}</td>
+                                <td>{claim.claimStatus}</td>
+                                <td>{claim.employee ? (
+                                    claim.employee.employeeName
                                 ) : (
                                     <em>Not Available</em>
                                 )}</td>
@@ -73,7 +77,7 @@ const MCSubmissionDisplay = () => {
             </div>
         </div>
     );
-};
+}
 
 // export component
-export default MCSubmissionDisplay;
+export default ClaimDisplay;

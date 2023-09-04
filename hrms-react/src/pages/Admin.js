@@ -60,13 +60,27 @@ const Admin = () => {
         navigate('/mc-submission-list');
     }
 
+    // handle view leave list
+    const handleLeaveList = () => {
+        // redirect to leave list page
+        navigate('/leave-display');
+    }
+
+    // handle view claim list
+    const handleClaimList = () => {
+        // redirect to claim list page
+        navigate('/claim-display');
+    }
+
     return (
         <div className="container h-100 mt-5">
             <div className="d-flex justify-content-between">
                 <h1 className="text-center text-secondary font-weight-bold fs-1 mb-3">Employee List</h1>
                 <div className="d-flex">
-                    <button className="btn btn-outline-success mb-3 mx-3" type="submit" onClick={handleAdd}>ADD EMPLOYEE</button>
-                    <button className="btn btn-outline-warning mb-3 mx-3" type="submit" onClick={handleMcList}>VIEW MC LIST</button>
+                    <button className="btn btn-outline-warning mx-1 mb-3" type="submit" onClick={handleMcList}>VIEW MCS</button>
+                    <button className="btn btn-outline-info mx-2 mb-3" type="submit" onClick={handleLeaveList}>VIEW LEAVES</button>
+                    <button className="btn btn-outline-secondary mx-2 mb-3" type="submit" onClick={handleClaimList}>VIEW CLAIMS</button>
+                    <button className="btn btn-outline-success mx-1 mb-3" type="submit" onClick={handleAdd}>ADD EMPLOYEE</button>
                 </div>
             </div>
             <table className="table table-striped table-bordered table-hover">

@@ -17,6 +17,8 @@ import ApplyClaimForm from "./pages/ApplyClaimForm"
 import ApplyMcForm from "./pages/ApplyMcForm"
 import ViewMc from "./pages/ViewMC"
 import MCSubmissionDisplay from "./pages/McSubmissionDisplay";
+import LeaveDisplay from './pages/LeaveDisplay';
+import ClaimDisplay from './pages/ClaimDisplay';
 
 export default function AppRoutes(){
     const user = useContext(UserContext);
@@ -37,7 +39,9 @@ export default function AppRoutes(){
           <Route path="/about" element={<About />} />
           <Route path="/policy" element={<Policy />} />
           <Route path="/apply-leave" element={<ApplyLeaveForm />} />
+          <Route path="/leave-display" element={<LeaveDisplay />} />
           <Route path="/apply-claim" element={<ApplyClaimForm />} />
+          <Route path="/claim-display" element={<LeaveDisplay />} />
           <Route path="/apply-mc" element={<ApplyMcForm />} />
           <Route path="/login" element={<LogIn />} />
           <Route path="update-employee/:employeeId" element={<UpdateEmployee />} />
