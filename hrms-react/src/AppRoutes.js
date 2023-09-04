@@ -41,7 +41,7 @@ export default function AppRoutes(){
           <Route path="/apply-leave" element={<ApplyLeaveForm />} />
           <Route path="/leave-display" element={<LeaveDisplay />} />
           <Route path="/apply-claim" element={<ApplyClaimForm />} />
-          <Route path="/claim-display" element={<LeaveDisplay />} />
+          <Route path="/claim-display" element={<ClaimDisplay />} />
           <Route path="/apply-mc" element={<ApplyMcForm />} />
           <Route path="/login" element={<LogIn />} />
           <Route path="update-employee/:employeeId" element={<UpdateEmployee />} />

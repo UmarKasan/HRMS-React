@@ -38,7 +38,7 @@ const ClaimDisplay = () => {
     // jsx
     return (
         <div className="container h-100 mt-5">
-            <h1 className="text-center text-secondary font-weight-bold fs-1 mb-3">Leave List</h1>
+            <h1 className="text-center text-secondary font-weight-bold fs-1 mb-3">Claim List</h1>
             <table className="table table-striped table-bordered table-hover">
                 <thead>
                     <tr>
