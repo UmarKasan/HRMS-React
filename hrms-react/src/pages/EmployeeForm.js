@@ -131,7 +131,7 @@ export default function EmployeeForm() {
 
   const validateFields = (field, value) => {
     if (field === "employeeName") {
-      const regex = /^[A-Za-z]+$/;
+      const regex = /^[A-Za-z ]+$/;
       if (!value) {
         setErrors({ ...errors, employeeName: "Employee name is required" });
       } else if (!regex.test(value)) {
@@ -259,7 +259,7 @@ export default function EmployeeForm() {
                 e.target.value
               )
             }
-            required
+            // required
           />
           {errors.employeePassword && (
             <div className="text-danger">{errors.employeePassword}</div>
@@ -275,7 +275,7 @@ export default function EmployeeForm() {
             aria-describedby="icNumber"
             type="text"
             value={icNumber}
-            placeholder="S91234567X"
+            placeholder="S1234567X"
             onChange={(e) =>
               fieldValueChange(setIcNumber, "icNumber", e.target.value)
             }
@@ -325,7 +325,7 @@ export default function EmployeeForm() {
             aria-describedby="qualifications"
             type="text"
             value={qualifications}
-            placeholder="I went to school"
+            placeholder="Diploma, Degree, MSc, ..."
             onChange={(e) => setQualifications(e.target.value)}
           />
         </div>
@@ -339,7 +339,7 @@ export default function EmployeeForm() {
             aria-describedby="skills"
             type="text"
             value={skills}
-            placeholder="wiggle my toes"
+            placeholder="Marketing, Accounting, HR, ..."
             onChange={(e) => setSkills(e.target.value)}
           />
         </div>
