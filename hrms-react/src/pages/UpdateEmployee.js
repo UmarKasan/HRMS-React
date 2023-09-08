@@ -114,14 +114,15 @@ const UpdateEmployee = () => {
                 </div>
                 <div className="mb-3 d-flex flex-column align-items-start">
                     <label htmlFor="employeeName" className="form-label">Name</label>
-                    <input 
+                    <h4 className="text-primary fs-6">{employee.employeeName}</h4>
+                    {/* <input 
                         type="text"
                         className="form-control"
                         id="employeeName"
                         name="employeeName"
                         value={formData.employeeName}
                         onChange={handleChange}
-                    />
+                    /> */}
                 </div>
                 <div className="mb-3 d-flex flex-column align-items-start">
                     <label htmlFor="emailAddress" className="form-label">Email</label>
@@ -140,25 +141,11 @@ const UpdateEmployee = () => {
                 </div>
                 <div className="mb-3 d-flex flex-column align-items-start">
                     <label htmlFor="icNumber" className="form-label">NRIC</label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        id="icNumber"
-                        name="icNumber"
-                        value={formData.icNumber}
-                        onChange={handleChange}
-                    />
+                    <h4 className="text-primary fs-6">{employee.icNumber}</h4>
                 </div>
                 <div className="mb-3 d-flex flex-column align-items-start">
                     <label htmlFor="dateOfBirth" className="form-label">Date Of Birth</label>
-                    <input
-                        type="date"
-                        className="form-control"
-                        id="dateOfBirth"
-                        name="dateOfBirth"
-                        value={formData.dateOfBirth}
-                        onChange={handleChange}
-                    />
+                    <h4 className="text-primary fs-6">{employee.dateOfBirth}</h4>
                 </div>
                 <div className="mb-3 d-flex flex-column align-items-start">
                     <label htmlFor="address" className="form-label">Address</label>
